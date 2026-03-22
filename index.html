@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pushpak's Birthday Party 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --purple: #6B3FA0;
+    --purple-light: #EDE5F7;
+    --purple-dark: #3D1F66;
+    --purple-mid: #9B6DD1;
+    --white: #FFFFFF;
+    --off-white: #F9F6FE;
+    --lavender: #C4A8E8;
+    --dark: #1A0A2E;
+    --mid: #5A3A80;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--off-white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--dark);
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 90% 70% at 50% 40%, #3D1F66 0%, #1A0A2E 100%);
+  }
+
+  .orb { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  .sparkle-dot {
+    position: absolute;
+    border-radius: 50%;
+    animation: twinkle ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.08; transform: scale(0.8); }
+    50% { opacity: 0.9; transform: scale(1.4); }
+  }
+
+  .petal {
+    position: absolute;
+    border-radius: 80% 0 80% 0;
+    opacity: 0;
+    animation: fallPetal linear infinite;
+  }
+
+  @keyframes fallPetal {
+    0%   { transform: translateY(-80px) rotate(0deg); opacity: 0.6; }
+    100% { transform: translateY(110vh) rotate(400deg); opacity: 0; }
+  }
+
+  .hero-eyebrow {
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    position: relative;
+    z-index: 2;
+    margin-bottom: 22px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(68px, 14vw, 126px);
+    font-weight: 600;
+    line-height: 0.9;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--lavender);
+    display: block;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(44px, 9vw, 82px);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+    animation: fadeUp 1.4s ease both;
+    text-shadow: 0 0 50px rgba(196,168,232,0.5);
+  }
+
+  .hero-rule {
+    width: 140px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lavender), transparent);
+    margin: 28px auto;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.6s ease both;
+  }
+
+  .hero-rule::before {
+    content: '✦';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    color: var(--lavender);
+    padding: 0 8px;
+    background: #1A0A2E;
+  }
+
+  .hero-date {
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,0.65);
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.8s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(196,168,232,0.5);
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: scrollBounce 2.4s ease-in-out infinite;
+    text-decoration: none;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(180deg, var(--lavender), transparent);
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .details { background: var(--white); padding: 80px 20px; }
+
+  .container { max-width: 700px; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--purple-mid);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 50px;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 1px;
+    background: rgba(107,63,160,0.12);
+    border: 1px solid rgba(107,63,160,0.12);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .detail-card {
+    background: #fff;
+    padding: 32px 20px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .detail-card:hover { background: var(--purple-light); }
+
+  .d-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+
+  .d-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple-mid);
+    margin-bottom: 6px;
+  }
+
+  .d-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .d-sub {
+    font-size: 12px;
+    color: var(--mid);
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+
+  .join-band {
+    background: var(--purple-dark);
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .join-band::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    height: 60px;
+    background: var(--white);
+    clip-path: ellipse(55% 100% at 50% 0%);
+  }
+
+  .join-band::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 60px;
+    background: var(--off-white);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .join-band .eyebrow { color: var(--lavender); }
+  .join-band .sec-title { color: #fff; margin-bottom: 18px; }
+
+  .join-text {
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 440px;
+    margin: 0 auto 30px;
+  }
+
+  .join-text strong { color: var(--lavender); font-weight: 500; }
+
+  .join-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(196,168,232,0.35);
+    border-radius: 40px;
+    padding: 14px 36px;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .food-section { background: var(--off-white); padding: 80px 20px; }
+
+  .two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .col-head {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(107,63,160,0.15);
+  }
+
+  .pill-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .pill {
+    background: var(--white);
+    border: 1px solid rgba(107,63,160,0.12);
+    border-radius: 10px;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--dark);
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .pill:hover { border-color: var(--purple-mid); background: var(--purple-light); }
+  .pill .emo { font-size: 20px; flex-shrink: 0; }
+
+  .games-section { background: var(--white); padding: 80px 20px; }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .game-card {
+    background: var(--off-white);
+    border: 1px solid rgba(107,63,160,0.12);
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(107,63,160,0.13);
+  }
+
+  .game-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+
+  .game-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .game-desc { font-size: 12px; color: var(--mid); line-height: 1.6; }
+
+  .footer {
+    background: var(--dark);
+    padding: 70px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    pointer-events: none;
+  }
+
+  .footer-rule {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lavender), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .footer-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-big em { font-style: italic; color: var(--lavender); }
+
+  .footer-addr {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 44px;
+  }
+
+  .hosted-block {
+    display: inline-block;
+    border-top: 1px solid rgba(196,168,232,0.2);
+    padding-top: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hosted-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 8px;
+  }
+
+  .hosted-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #fff;
+  }
+
+  @media (max-width: 540px) {
+    .two-cols { grid-template-columns: 1fr; gap: 28px; }
+    .games-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb" style="width:300px;height:300px;background:rgba(107,63,160,0.28);top:-80px;right:-80px;filter:blur(80px);"></div>
+  <div class="orb" style="width:200px;height:200px;background:rgba(155,109,209,0.2);bottom:-40px;left:-60px;filter:blur(60px);"></div>
+
+  <div class="hero-eyebrow">✦ &nbsp; You Are Invited &nbsp; ✦</div>
+  <div class="hero-title">Happy <em>Birthday</em></div>
+  <div class="hero-name">Pushpak</div>
+  <div class="hero-rule"></div>
+  <div class="hero-date">Friday, 28 March 2026 &nbsp;·&nbsp; Sydney</div>
+  <a class="scroll-hint" href="#details">Scroll</a>
+</section>
+
+<section class="details" id="details">
+  <div class="container">
+    <div class="eyebrow">The Celebration</div>
+    <div class="sec-title">An Evening to Remember</div>
+    <div class="details-grid">
+      <div class="detail-card">
+        <span class="d-icon">📅</span>
+        <div class="d-label">Date</div>
+        <div class="d-value">28 March</div>
+        <div class="d-sub">Friday, 2026</div>
+      </div>
+      <div class="detail-card">
+        <span class="d-icon">🕕</span>
+        <div class="d-label">Time</div>
+        <div class="d-value">6:00 PM</div>
+        <div class="d-sub">Onwards into the night</div>
+      </div>
+      <div class="detail-card">
+        <span class="d-icon">📍</span>
+        <div class="d-label">Address</div>
+        <div class="d-value" style="font-size:17px;">3806/Parkes St</div>
+        <div class="d-sub">Harris Park, Sydney NSW</div>
+      </div>
+      <div class="detail-card">
+        <span class="d-icon">🎨</span>
+        <div class="d-label">Theme Colour</div>
+        <div class="d-value" style="font-size:17px;">White & Purple</div>
+        <div class="d-sub">Dress in theme colours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join-band">
+  <div class="container">
+    <div class="eyebrow">Mark Your Calendar</div>
+    <div class="sec-title">You Have to Join Us!</div>
+    <p class="join-text">
+      Your presence is the only gift we need.<br>
+      Come celebrate <strong>Pushpak's</strong> special day filled with<br>
+      love, laughter, great food & unforgettable memories. ✦
+    </p>
+    <div class="join-badge">28 March · 6:00 PM · Harris Park, Sydney</div>
+  </div>
+</section>
+
+<section class="food-section">
+  <div class="container">
+    <div class="eyebrow">What's In Store</div>
+    <div class="sec-title">Food & Drinks</div>
+    <div class="two-cols">
+      <div>
+        <div class="col-head">🥘 On the Menu</div>
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--purple-mid);margin:0 0 8px;">Starters</div>
+        <div class="pill-list">
+          <div class="pill"><span class="emo">💧</span> Pani Puri Station</div>
+          <div class="pill"><span class="emo">🍞</span> Dabeli Bites</div>
+          <div class="pill"><span class="emo">🥑</span> Guacamole & Nachos</div>
+        </div>
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--purple-mid);margin:18px 0 8px;">Main Course</div>
+        <div class="pill-list">
+          <div class="pill"><span class="emo">🧆</span> Paneer Masala</div>
+          <div class="pill"><span class="emo">🫓</span> Butter Naan</div>
+          <div class="pill"><span class="emo">🍚</span> Dum Biryani</div>
+        </div>
+      </div>
+      <div>
+        <div class="col-head">🍹 Drinks</div>
+        <div class="pill-list">
+          <div class="pill"><span class="emo">🥭</span> Mango Tango Mocktail</div>
+          <div class="pill"><span class="emo">🫚</span> Ginger Beer</div>
+          <div class="pill"><span class="emo">🌹</span> Rose Lychee Slush</div>
+          <div class="pill"><span class="emo">🍺</span> Beer</div>
+          <div class="pill"><span class="emo">🍷</span> Wine</div>
+          <div class="pill"><span class="emo">🥃</span> Whisky</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="games-section">
+  <div class="container">
+    <div class="eyebrow">Let the Fun Begin</div>
+    <div class="sec-title">Games of the Night</div>
+    <div class="games-grid">
+      <div class="game-card">
+        <span class="game-icon">🎱</span>
+        <div class="game-name">Housie</div>
+        <div class="game-desc">Classic tambola — everyone plays together, big prizes!</div>
+      </div>
+      <div class="game-card">
+        <span class="game-icon">🃏</span>
+        <div class="game-name">UNO Reverse</div>
+        <div class="game-desc">Wild cards, chaos and revenge — expect the unexpected!</div>
+      </div>
+      <div class="game-card">
+        <span class="game-icon">🍺</span>
+        <div class="game-name">Beer Pong</div>
+        <div class="game-desc">The ultimate party face-off — couples vs couples!</div>
+      </div>
+      <div class="game-card">
+        <span class="game-icon">🎭</span>
+        <div class="game-name">Dumb Charades</div>
+        <div class="game-desc">Act it out — no talking, only laughing guaranteed!</div>
+      </div>
+      <div class="game-card">
+        <span class="game-icon">📱</span>
+        <div class="game-name">Instagram Trends</div>
+        <div class="game-desc">Trending reels & viral challenges — who nails it best?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-orb" style="width:260px;height:260px;background:rgba(107,63,160,0.3);top:-60px;left:-60px;"></div>
+  <div class="footer-orb" style="width:180px;height:180px;background:rgba(155,109,209,0.2);bottom:-40px;right:-40px;"></div>
+  <div class="footer-rule"></div>
+  <div class="footer-big">It won't be a party<br><em>without you, Pushpak ✦</em></div>
+  <div class="footer-addr">3806/Parkes Street · Harris Park · Sydney NSW</div>
+  <div class="hosted-block">
+    <div class="hosted-label">Hosted with Love</div>
+    <div class="hosted-name">Pushpak &amp; Akshita</div>
+  </div>
+</footer>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const petalColors = ['#C4A8E8','#ffffff','#9B6DD1','#EDE5F7','#6B3FA0'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = Math.random() * 16 + 7;
+    p.style.cssText = `width:${size}px;height:${size*1.3}px;left:${Math.random()*100}%;background:${petalColors[Math.floor(Math.random()*petalColors.length)]};opacity:0;animation-duration:${Math.random()*6+7}s;animation-delay:${Math.random()*8}s;transform:rotate(${Math.random()*360}deg);`;
+    hero.appendChild(p);
+  }
+  for (let i = 0; i < 38; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle-dot';
+    const sz = Math.random() * 2.5 + 0.8;
+    s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${Math.random()>0.5?'#ffffff':'#C4A8E8'};animation-duration:${Math.random()*3+2}s;animation-delay:${Math.random()*5}s;`;
+    hero.appendChild(s);
+  }
+  const reveals = document.querySelectorAll('.detail-card, .pill, .game-card');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }, i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(18px)';
+    el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
